@@ -1,0 +1,48 @@
+node_modules/
+build/
+*.o
+*.so
+*.a
+bin/
+.DS_Store
+.vscode/
+reference/
+logs/
+data/
+*.log
+
+# --- AI Artifacts & Memos (Kept local, excluded from Git) ---
+architectural_review_questions.md
+architecture_breakdown.md
+plan.md
+technical_note*
+*.pdf
+.gemini/
+task.md
+implementation_plan.md
+walkthrough.md
+
+# --- Deprecated Node.js & UI Code ---
+node_modules/
+package.json
+package-lock.json
+src/gateway/
+public/
+scripts/
+
+# --- Binaries ---
+src/core/matching_engine
+tests/benchmark_client
+tests/hotpath_benchmark
+
+# --- Deprecated N-API & IPC ---
+src/core/addon.cpp
+src/core/ipc.cpp
+src/core/ipc.h
+
+# --- JS Tests ---
+tests/*.js
+tests/lob_test
+
+# --- Scripts ---
+generate_git_history.sh
