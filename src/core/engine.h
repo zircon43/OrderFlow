@@ -2,9 +2,11 @@
 
 #include "lob.h"
 #include "ring_buffer.h"
+#include "kafka_producer.h"
 #include <atomic>
 #include <thread>
 #include <vector>
+#include <memory>
 
 class MatchingEngine {
 public:
@@ -22,6 +24,8 @@ public:
 
     // Poll for completed trades
     bool poll_trades(std::vector<Trade>& out_trades);
+
+    std::unique_ptr<KafkaProducer> kafka_producer;
 
 private:
     void loop();

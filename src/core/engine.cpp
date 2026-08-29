@@ -3,7 +3,9 @@
 #include <pthread.h>
 #include <sched.h>
 
-MatchingEngine::MatchingEngine() {}
+MatchingEngine::MatchingEngine() {
+    kafka_producer = std::make_unique<KafkaProducer>("127.0.0.1", 9092, "trades");
+}
 
 MatchingEngine::~MatchingEngine() {
     stop();
@@ -11,12 +13,14 @@ MatchingEngine::~MatchingEngine() {
 
 void MatchingEngine::start() {
     if (!running.exchange(true)) {
+        kafka_producer->start();
         worker_thread = std::thread(&MatchingEngine::loop, this);
     }
 }
 
 void MatchingEngine::stop() {
     if (running.exchange(false)) {
+        kafka_producer->stop();
         if (worker_thread.joinable()) {
             worker_thread.join();
         }
@@ -58,6 +62,9 @@ void MatchingEngine::loop() {
             
             // Push trades to the output queue
             for (const auto& t : trades) {
+                // Async publish to Kafka
+                kafka_producer->produce_trade(t);
+                
                 // If queue is full, we lose trades in this simple implementation.
                 // In production, we'd spin until there's space.
                 while (!trade_queue.push(t) && running.load(std::memory_order_relaxed)) {

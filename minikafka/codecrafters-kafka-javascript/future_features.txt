@@ -1,0 +1,27 @@
+Replication
+In this challenge extension, you'll add support for replication to your Kafka implementation.
+
+Along the way, you'll learn about leader & follower replicas, what the replication factor is and more.
+
+
+1076 votes
+Creating Partitions
+In this challenge extension, you'll add support for creating partitions to your Kafka implementation.
+
+Along the way, you'll learn about the CreatePartitions API and more.
+
+
+745 votes
+Transactions
+Voted
+In this challenge extension, you'll add support for transactions to your Kafka implementation.
+
+Along the way, you'll learn about the EndTxn API, how transactions are implemented in Kafka and more.
+
+
+885 votes
+Topics
+Voted
+In this challenge extension, you'll add support for topics to your Kafka implementation.
+
+Along the way, you'll learn about the CreateTopics API, the DeleteTopics API and more.

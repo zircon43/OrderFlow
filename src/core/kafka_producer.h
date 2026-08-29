@@ -1,1 +1,38 @@
-"#pragma once\n\n#include \"types.h\"\n#include <string>\n#include <vector>\n#include <thread>\n#include <atomic>\n#include <mutex>\n#include <condition_variable>\n\nclass KafkaProducer {\npublic:\n    KafkaProducer(const std::string& host, int port, const std::string& topic);\n    ~KafkaProducer();\n\n    void start();\n    void stop();\n    \n    // Non-blocking produce\n    void produce_trade(const Trade& trade);\n\nprivate:\n    void background_loop();\n    bool connect_broker();\n    void send_produce_request(const std::vector<Trade>& batch);\n\n    std::string host_;\n    int port_;\n    std::string topic_;\n    int sock_;\n    int32_t correlation_id_;\n    \n    std::atomic<bool> running_;\n    std::thread worker_;\n    \n    std::vector<Trade> queue_;\n    std::mutex mu_;\n    std::condition_variable cv_;\n};\n"
+#pragma once
+#include "types.h"
+#include <string>
+#include <vector>
+#include <thread>
+#include <atomic>
+#include <mutex>
+#include <condition_variable>
+
+class KafkaProducer {
+public:
+    KafkaProducer(const std::string& host, int port, const std::string& topic);
+    ~KafkaProducer();
+
+    void start();
+    void stop();
+    
+    // Non-blocking produce
+    void produce_trade(const Trade& trade);
+
+private:
+    void background_loop();
+    bool connect_broker();
+    void send_produce_request(const std::vector<Trade>& batch);
+
+    std::string host_;
+    int port_;
+    std::string topic_;
+    int sock_;
+    int32_t correlation_id_;
+    
+    std::atomic<bool> running_;
+    std::thread worker_;
+    
+    std::vector<Trade> queue_;
+    std::mutex mu_;
+    std::condition_variable cv_;
+};
