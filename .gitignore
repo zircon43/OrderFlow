@@ -47,3 +47,4 @@ tests/lob_test
 # --- Scripts ---
 generate_git_history.sh
 finalv1.pdf
+cv_pointer.md
