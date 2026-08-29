@@ -49,7 +49,7 @@ node setup_topic.js
 
 # 2. Start the broker (runs on port 9092)
 # Tip: Prefix with FSYNC_MODE=1 for strict physical durability
-FSYNC_MODE=1 node minikafka/codecrafters-kafka-javascript/app/main.js
+FSYNC_MODE=1 node minikafka/js-broker/app/main.js
 ```
 
 ### 2. Compile and Start the C++ Engine

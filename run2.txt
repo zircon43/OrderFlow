@@ -1,0 +1,9 @@
+Starting Concurrent E2E Benchmark...
+Threads: 4 | Orders per thread: 2500
+
+--- E2E Benchmark Results ---
+Total Orders Sent: 10000
+Total Trades Matched: 5000
+Ingestion Throughput: 1.66667e+06 orders/sec
+End-to-End Latency p50: 2049 microseconds
+End-to-End Latency p99: 41429 microseconds
