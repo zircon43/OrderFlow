@@ -105,16 +105,16 @@ int main() {
     }
 
     for (auto& t : producers) t.join();
-    auto end_time = std::chrono::high_resolution_clock::now();
     
     consumer.join();
+    auto end_time = std::chrono::high_resolution_clock::now();
     
-    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
+    auto elapsed_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
     
     std::cout << "\n--- E2E Benchmark Results ---" << std::endl;
     std::cout << "Total Orders Sent: " << TOTAL_ORDERS << std::endl;
     std::cout << "Total Trades Matched: " << trades_received << std::endl;
-    std::cout << "Ingestion Throughput: " << (TOTAL_ORDERS / (elapsed / 1000.0)) << " orders/sec" << std::endl;
+    std::cout << "True E2E Throughput: " << (TOTAL_ORDERS / (elapsed_us / 1000000.0)) << " orders/sec" << std::endl;
 
     if (!latencies.empty()) {
         std::sort(latencies.begin(), latencies.end());
