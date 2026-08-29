@@ -21,7 +21,7 @@ OrderFlow is a high-performance, deterministic Limit Order Book (LOB) matching e
     - **Kafka Producer Queue (Durability)**: Streams durable WAL persistence to the `minikafka` broker on **port 9092**.
 
 ## True End-to-End Performance Limits
-*Note: These benchmarks were captured under extreme stress testing on a strictly constrained 2-core environment, simultaneously running 4 producer threads, the Node.js V8 broker, and the full C++ pipeline.*
+*Note: These benchmarks were captured under extreme stress testing on a strictly constrained 4-core environment, simultaneously running 4 producer threads, the Node.js V8 broker, and the full C++ pipeline.*
 
 - **True E2E Ingestion Throughput:** 434,953 orders/sec
 - **End-to-End Latency (p50):** 1.65 ms
